@@ -4,35 +4,16 @@
 
 {% block body %}
     <section class="articles">
+        {% for article in articles %}
         <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 14/09/2019</div>
+            <h2>{{article.title}}</h2>
+            <div class="metadata">{{article.createdAt | date('d/m/Y H:i')}}</div>
             <div class="content">
-                <img src="http://placehold.it/350x150" alt="">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae aut dicta quaerat, doloremque asperiores perferendis?</p>
-                <p>Rerum officiis asperiores modi, possimus ratione officia quam at similique excepturi, molestias enim id quaerat.</p>
-                <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a>
+                <img src="{{article.image}}" alt="">
+                    {{article.content | raw}}
+                <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
             </div>
         </article>
-        <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 14/09/2019</div>
-            <div class="content">
-                <img src="http://placehold.it/350x150" alt="">
-                <p>Voluptatum beatae libero quae tempore vero deserunt voluptatibus similique. Eaque eum animi sit distinctio veritatis.</p>
-                <p>Ipsa repellat voluptatum iste numquam saepe, hic vero nesciunt minus libero iure nemo blanditiis rerum!</p>
-                <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a>
-            </div>
-        </article>
-        <article>
-            <h2>Titre de l'article</h2>
-            <div class="metadata">Ecrit le 14/09/2019</div>
-            <div class="content">
-                <img src="http://placehold.it/350x150" alt="">
-                <p>Doloribus beatae ipsam odit est asperiores doloremque soluta repudiandae, blanditiis, perferendis esse laboriosam? Nobis, soluta.</p>
-                <p>Esse, explicabo animi obcaecati necessitatibus debitis ab ipsa nulla eaque. Blanditiis sit neque maiores culpa.</p>
-                <a href="{{ path('blog_show') }}" class="btn btn-primary">Lire la suite</a>
-            </div>
-        </article>
+        {% endfor %}
     </section>
 {% endblock %}
